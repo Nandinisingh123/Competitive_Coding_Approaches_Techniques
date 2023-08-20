@@ -26,3 +26,36 @@ int main()
 	}
 	return 0;
 }
+
+
+//optimized solution
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void sieve(int n)
+{
+    vector<bool> isprime(n+1, true);  // Create a vector to store whether numbers are prime, here the values are first stored as true for prime no. in the vector
+
+    for (int i = 2; i<= n; i++)
+    {
+        if (isprime[i])
+        {
+            cout << i << " ";
+            for (int j = i * i; j <= n; j =j+i)
+            {
+                isprime[j] = false;  // Mark multiples of i as not prime
+            }
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    sieve(n);
+    return 0;
+}
+
